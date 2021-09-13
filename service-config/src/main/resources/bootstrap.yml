@@ -13,6 +13,9 @@ spring:
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
+  # Seguridad para acceder a nuestros archivos de configuración desde la ruta
+  # http://localhost:8081/{nombre-servicio}/default, "{nombre-servicio}" puede ser service-product. service-customer, ...
+  # En la sección de Auth de Insomnia o Postman elegir basic y poner el name/password en esta config. 
   security:
     user:
       name: root
