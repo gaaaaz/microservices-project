@@ -1,10 +1,17 @@
 server: 
   port: 8081
-  
+ 
+# Ruta de archivos de configuración de microservicios - proyectos (1)
 spring:
   cloud:
     config:
       server:
         git:
-          uri: 
-
+          uri: https://github.com/szab0/microservices-project.git
+          searchPath: config-data
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
+  security:
+    user:
+      name: root
+      password: s3cret
