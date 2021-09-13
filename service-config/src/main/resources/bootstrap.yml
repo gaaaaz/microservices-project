@@ -2,6 +2,8 @@ server:
   port: 8081
  
 # Ruta de archivos de configuración de microservicios - proyectos (1)
+# Recuerda añadir la dependencia "org.springframework.cloud:spring-cloud-starter-bootstrap" y 
+# colocar las variables de GIT en Run > Run Configurations > Enviroment (Selecciona tu proyecto antes)
 spring:
   cloud:
     config:
