@@ -16,4 +16,4 @@ spring:
   security:
     user:
       name: root
-      password: s3cret
+      password: s3cr3t
