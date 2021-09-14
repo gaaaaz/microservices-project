@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Positive;
 
+import academy.digitallab.store.serviceshopping.model.Product;
 import lombok.Data;
 
 @Data
@@ -30,6 +31,11 @@ public class InvoiceItem {
 
 	@Transient /* Valor que se muestra en el json de la response pero no se almacena en bd */
 	private Double subTotal;
+	
+	/* Elemento que viene de otro microservicio por feign (product), y al igual que subtotal lleva @Transient porque
+	 * esta en la response pero no se guarda en bd. */
+	@Transient
+	private Product product;
 
 	public Double getSubTotal() { /* Método get de subTotal, no usando lombok */
 		if (this.price > 0 && this.quantity > 0) {

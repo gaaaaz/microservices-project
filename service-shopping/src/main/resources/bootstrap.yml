@@ -13,6 +13,13 @@ spring:
       uri: http://locahost:8081 # Ruta de service-config (Configuracion de Spring Cloud)
       username: root
       password: s3cr3t
+      
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
 
 # No olvidar añadir a los archivos de configuracion en config-data las líneas para la conexion a Eureka Server,
 # más info en "bootstrap.yml" de service-registry.

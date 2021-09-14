@@ -17,10 +17,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import academy.digitallab.store.serviceshopping.model.Customer;
+import academy.digitallab.store.serviceshopping.model.Product;
 import lombok.Data;
 
 @Entity
@@ -51,7 +54,15 @@ public class Invoice {
     private List<InvoiceItem> items;
 
     private String state;
-
+    
+    /* Son transient porque son elementos que no se registran en la bd, pero se devolverán en la response. Además, son
+     * elementos que vienen de otros microservicios (customer y product) */
+    @Transient
+    private Customer customer;
+    
+    @Transient
+    private Product product;
+    
     public Invoice(){
         items = new ArrayList<>();
     }

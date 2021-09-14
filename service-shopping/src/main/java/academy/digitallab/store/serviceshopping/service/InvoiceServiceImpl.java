@@ -1,11 +1,17 @@
 package academy.digitallab.store.serviceshopping.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import academy.digitallab.store.serviceshopping.client.CustomerClient;
+import academy.digitallab.store.serviceshopping.client.ProductClient;
 import academy.digitallab.store.serviceshopping.entity.Invoice;
+import academy.digitallab.store.serviceshopping.entity.InvoiceItem;
+import academy.digitallab.store.serviceshopping.model.Customer;
+import academy.digitallab.store.serviceshopping.model.Product;
 import academy.digitallab.store.serviceshopping.repository.InvoiceItemsRepository;
 import academy.digitallab.store.serviceshopping.repository.InvoiceRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +22,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Autowired
 	private InvoiceRepository invoiceRepository;
+	
+	@Autowired
+	private CustomerClient customerClient;
+	
+	@Autowired
+	private ProductClient productClient;
 	
 	@Autowired
 	private InvoiceItemsRepository invoiceItemsRepository;
@@ -35,7 +47,16 @@ public class InvoiceServiceImpl implements InvoiceService {
 		}
 		
 		invoice.setState("CREATED");
-		return invoiceRepository.save(invoice);
+		invoiceDB = invoiceRepository.save(invoice);
+		
+		/* Actualizando el stock de los items procesados en la factura (vendidos). Utiliza los métodos de
+		 * ProductClient, es decir los métodos de otro microservicio gracias a Feign. */
+		invoiceDB.getItems().forEach(invoiceItem -> {
+			productClient.updateStock(invoiceItem.getProductId(), invoiceItem.getQuantity() * -1);
+		});
+		
+		
+		return invoiceDB;
 	}
 
 	@Override
@@ -71,7 +92,25 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public Invoice getInvoice(Long id) {
-		return invoiceRepository.findById(id).orElse(null);
+		
+		Invoice invoiceDB = invoiceRepository.findById(id).orElse(null);
+		
+		/* Utiliza los métodos de ProductClient y CustomerClient que hacen referencia a métodos
+		 * de otros microservicios, gracias a Feign. */
+		if(invoiceDB != null) {
+			Customer customer = customerClient.getCustomer(invoiceDB.getCustomerId()).getBody();
+			invoiceDB.setCustomer(customer);
+		
+			List<InvoiceItem> listItem=invoiceDB.getItems().stream().map(invoiceItem -> {
+				Product product = productClient.getProduct(invoiceItem.getProductId()).getBody();
+	            invoiceItem.setProduct(product);
+	            return invoiceItem;
+			}).collect(Collectors.toList());
+			
+			invoiceDB.setItems(listItem);
+		}
+		
+		return invoiceDB;
 	}
 
 	
