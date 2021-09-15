@@ -24,10 +24,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private InvoiceRepository invoiceRepository;
 	
 	@Autowired
-	private CustomerClient customerClient;
+	CustomerClient customerClient;
 	
 	@Autowired
-	private ProductClient productClient;
+	ProductClient productClient;
 	
 	@Autowired
 	private InvoiceItemsRepository invoiceItemsRepository;
@@ -54,7 +54,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoiceDB.getItems().forEach(invoiceItem -> {
 			productClient.updateStock(invoiceItem.getProductId(), invoiceItem.getQuantity() * -1);
 		});
-		
 		
 		return invoiceDB;
 	}
@@ -97,7 +96,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		/* Utiliza los métodos de ProductClient y CustomerClient que hacen referencia a métodos
 		 * de otros microservicios, gracias a Feign. */
-		if(invoiceDB != null) {
+		if(null != invoiceDB) {
 			Customer customer = customerClient.getCustomer(invoiceDB.getCustomerId()).getBody();
 			invoiceDB.setCustomer(customer);
 		

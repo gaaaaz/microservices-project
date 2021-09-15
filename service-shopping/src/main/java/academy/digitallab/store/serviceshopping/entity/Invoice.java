@@ -60,9 +60,6 @@ public class Invoice {
     @Transient
     private Customer customer;
     
-    @Transient
-    private Product product;
-    
     public Invoice(){
         items = new ArrayList<>();
     }
