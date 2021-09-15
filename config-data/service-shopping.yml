@@ -43,6 +43,9 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
  
 # Párametros de conexión a Eureka Server
+# Añadir esta "eureka.instance.hostname: localhost" para establecer "localhost" durante la conexion. Ej: si se tiene docker, este cambia localhost por
+# host.docker.internal, lo que hará que eureka no pueda encontrar nuestros servicios con Feign.
+# Es necesario la linea mencionada en todos los archivos de configuracion de los microservicios (proyectos).
 eureka:
     instance:
         hostname: localhost
