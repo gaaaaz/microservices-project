@@ -5,7 +5,7 @@
 
 spring:
   application:
-    name: service-shopping # Nombre de la aplicacion y nuestro archivo de configuracion 
+    name: service-registry # Nombre de la aplicacion y nuestro archivo de configuracion de eureka server (en este caso)
   config:
     import: optional:configserver:http://localhost:8081 
   cloud:
@@ -14,5 +14,12 @@ spring:
       username: root
       password: s3cr3t
 
-# No olvidar añadir a los archivos de configuracion en config-data las líneas para la conexion a Eureka Server,
-# más info en "bootstrap.yml" de service-registry.
+# En los archivos de configuración de cada microservicio en la carpeta "config-data" del proyecto/repositorio,
+# añadir las siguientes lìneas para la conexión a Eureka Server
+# eureka:
+#    client:
+#        serviceUrl:
+#            defaultZone: http://localhost:8099/eureka/
+
+# No olvides reiniciar el service-config después de añadir las lineas anteriores.
+
