@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import academy.digitallab.store.serviceshopping.model.Product;
 
-@FeignClient(name = "service-product/service-product")
+@FeignClient(name = "service-product")
 @RequestMapping("/products")
 public interface ProductClient {
 
