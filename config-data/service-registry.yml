@@ -10,10 +10,3 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-      
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 160000000
-        readTimeout: 160000000
