@@ -11,11 +11,12 @@ import academy.digitallab.store.serviceshopping.model.Customer;
 /* No olvidar añadir la anotación @FeignClient, darle un nombre (usualmente el nombre del microservicio) y copiar
  * los métodos que quieres del Controller de los otros microservicios, junto al mismo @RequestMapping de estos. */
 
-@FeignClient(name = "service-customer")
-@RequestMapping("/customers")
+/* Hystrix: fallback es la clase creada para la respuesta en caso falle la llamada de shopping al microservicio customer,
+ * no olvidar añadir en la anotacion de FeignClient. */
+@FeignClient(name = "service-customer", fallback = CustomerHystrixFallbackFactory.class)
 public interface CustomerClient {
 
-	@GetMapping("/{idCustomer}")
+	@GetMapping("/customers/{idCustomer}")
 	public ResponseEntity<Customer> getCustomer(@PathVariable("idCustomer") Long idCustomer);
 	
 }

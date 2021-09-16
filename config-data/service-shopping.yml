@@ -62,7 +62,10 @@ feign:
                 connectTimeout: 160000000
                 readTimeout: 160000000
 management: # Habilitar Actuator
+    security:
+        enabled: false
     endpoints:
         web:
             exposure:
-                include: "*"
+                include: hystrix.stream
+            base-path: / 
