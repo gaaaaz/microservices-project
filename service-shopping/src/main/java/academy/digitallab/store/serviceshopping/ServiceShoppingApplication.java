@@ -3,6 +3,8 @@ package academy.digitallab.store.serviceshopping;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /* Añadir la anotación @EnableEurekaCliente para la conexión del microservicio - proyecto a EurekaServer,
@@ -19,6 +21,13 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * (Eureka Server), además de los microservicios (proyectos). */
 
 @EnableFeignClients
+
+/* Hystrix es una dependencia que sirve para controlar el fallo de los microservicios. Por ejemplo: shopping-service depende
+ * de customer y product para funcionar. Si customer fallará, lo que hace Hystrix es evitar que shopping siga haciendo
+ * solicitudes a customer, encapsula el fallo y lo devuelve (circuit-breaker pattern)  */
+
+@EnableHystrix
+@EnableHystrixDashboard
 public class ServiceShoppingApplication {
 
 	public static void main(String[] args) {
