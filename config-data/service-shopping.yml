@@ -63,11 +63,11 @@ feign:
             default:
                 connectTimeout: 160000000
                 readTimeout: 160000000
+hystrix:
+    dashboard:
+        proxy-stream-allow-list: "*"
 management: # Habilitar Actuator
-    security:
-        enabled: false
     endpoints:
         web:
             exposure:
-                include: hystrix.stream
-            base-path: / 
+                include: "*"
