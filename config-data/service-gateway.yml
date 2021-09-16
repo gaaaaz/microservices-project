@@ -11,8 +11,6 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8099/eureka/
-        register-with-eureka: false
-        fetch-registry: false
 
 # Configuración de Gateway (Redireccion a los microservicios - proyectos)
 spring:
@@ -23,15 +21,15 @@ spring:
                     enabled: true
             routes: 
                 id: service-customer # Referencia al microservicio service-customer
-                uri: lb://service-customer
+                uri: http://localhost:8092/service-customer
                 predicates:
                     Path=/customers/** # Todas las peticiones que tengan en su ruta "/customers", harán uso de service-customer
                 id: service-product
-                uri: lb://service-product
+                uri: http://localhost:8091/service-product
                 predicates:
                     Path=/products/**
                 id: service-shopping
-                uri: lb://service-shopping
+                uri: http://localhost:8093/service-shopping
                 predicates:
                     Path=/invoices/**
                 

@@ -2,9 +2,11 @@ server:
   port: 8099
 
 # Con esta configuración se define donde va a estar escuchando Eureka server las peticiones de nuestros microservicios
+# No olvidar añadir "eureka.instance.hostname: localhost" para definir localhost como la ruta donde ejecutar los servicios,
+# 
 eureka:
   instance:
-    hostname: localhost
+    hostname: localhost 
   client:
     registerWithEureka: false
     fetchRegistry: false
