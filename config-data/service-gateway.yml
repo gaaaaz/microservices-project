@@ -11,6 +11,8 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8099/eureka/
+        register-with-eureka: false
+        fetch-registry: false
 
 # Configuración de Gateway (Redireccion a los microservicios - proyectos)
 spring:
