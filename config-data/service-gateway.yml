@@ -1,0 +1,34 @@
+#Application Configuration
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8099/eureka/
+
+# Configuración de Gateway (Redireccion a los microservicios - proyectos)
+spring:
+    cloud:
+        gateway:
+            discovery:
+                locator:
+                    enabled: true
+            routes: 
+                id: service-customer # Referencia al microservicio service-customer
+                uri: lb://service-customer
+                predicates:
+                    Path=/customers/** # Todas las peticiones que tengan en su ruta "/customers", harán uso de service-customer
+                id: service-product
+                uri: lb://service-product
+                predicates:
+                    Path=/products/**
+                id: service-shopping
+                uri: lb://service-shopping
+                predicates:
+                    Path=/invoices/**
+                
+                    
