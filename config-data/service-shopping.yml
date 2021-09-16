@@ -63,7 +63,7 @@ feign:
             default:
                 connectTimeout: 160000000
                 readTimeout: 160000000
-hystrix:
+hystrix: # Para que el dashboard de hystrix funcione correctamente
     dashboard:
         proxy-stream-allow-list: "*"
 management: # Habilitar Actuator
