@@ -21,15 +21,15 @@ spring:
                     enabled: true
             routes: 
                 id: service-customer # Referencia al microservicio service-customer
-                uri: http://localhost:8092/service-customer
+                uri: lb://service-customer
                 predicates:
                     Path=/customers/** # Todas las peticiones que tengan en su ruta "/customers", harán uso de service-customer
                 id: service-product
-                uri: http://localhost:8091/service-product
+                uri: lb://localhost:8091/service-product
                 predicates:
                     Path=/products/**
                 id: service-shopping
-                uri: http://localhost:8093/service-shopping
+                uri: lb://localhost:8093/service-shopping
                 predicates:
                     Path=/invoices/**
                 
