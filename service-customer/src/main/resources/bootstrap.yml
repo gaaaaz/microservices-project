@@ -16,6 +16,8 @@ spring:
   boot:
     admin:
       client:
+        instance:
+          service-url: http://localhost:8092 # Definir url del servicio en específico, para que no tome otra ruta y de error
         url: http://localhost:8086
   
      

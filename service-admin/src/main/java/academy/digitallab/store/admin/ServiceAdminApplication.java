@@ -13,7 +13,8 @@ import de.codecentric.boot.admin.server.config.EnableAdminServer;
  * Para Admin Server, crearemos un proyecto (service-admin) con la dependencia Spring Boot Admin (Server),
  * habilitaremos en la clase main con @EnableAdminServer y colocaremos las configuraciones en el application.properties.
  * También añadiremos la dependencia "spring-boot-admin-starter-client" en cada uno de los microservicios y la respectiva
- * config en cada archivo bootstrap.yml de cada microservicio.*/
+ * config en cada archivo bootstrap.yml de cada microservicio.
+ * Recuerda que Admin Server y los Admin Client en los microservicios deben tener la misma versión en el pom.xml*/
 
 @EnableAdminServer
 @SpringBootApplication

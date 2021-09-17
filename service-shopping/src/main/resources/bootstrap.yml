@@ -16,6 +16,8 @@ spring:
   boot: # Configuración para conexión a Admin Server
     admin:
       client:
+        instance:
+          service-url: http://localhost:8093 # Definir url del servicio en específico, para que no tome otra ruta y de error
         url: http://localhost:8086      
 
 

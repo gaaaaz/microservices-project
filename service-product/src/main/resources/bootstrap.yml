@@ -16,6 +16,8 @@ spring:
   boot:
     admin:
       client:
+        instance:
+          service-url: http://localhost:8091 # Definir url del servicio en específico, para que no tome otra ruta y de error
         url: http://localhost:8086
 # No olvidar añadir a los archivos de configuracion en config-data las líneas para la conexion a Eureka Server,
 # más info en "bootstrap.yml" de service-registry.
