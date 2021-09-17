@@ -42,10 +42,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.cloud</groupId> -->
-<!-- 			<artifactId>spring-cloud-starter-sleuth</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId> <!-- Otorgar una id unica a cada petición realizada por los microservicios -->
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
 		
 		<dependency>
     		<groupId>de.codecentric</groupId>
