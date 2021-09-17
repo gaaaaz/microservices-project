@@ -1,8 +1,3 @@
-# Con esta configuración se accede al archivo de configuracion correspondiente en la carpeta config-data
-# en nuestro repo, el cual es accedido con Spring Cloud.
-# No olvidar añadir la dependencia: "spring-cloud-starter-bootstrap" y la linea
-# spring.config.import: optional:configserver:http://localhost:8081
-
 spring:
   application:
     name: service-gateway # Nombre de la aplicacion y nuestro archivo de configuracion 
@@ -13,6 +8,3 @@ spring:
       uri: http://locahost:8081 # Ruta de service-config (Configuracion de Spring Cloud)
       username: root
       password: s3cr3t
-      
-# No olvidar añadir a los archivos de configuracion en config-data las líneas para la conexion a Eureka Server,
-# más info en "bootstrap.yml" de service-registry.
