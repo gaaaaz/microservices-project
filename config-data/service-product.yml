@@ -52,3 +52,9 @@ eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8099/eureka/
+management: # Habilitar Actuator
+    endpoints:
+        web:
+            exposure:
+                include: "*"  
+          
