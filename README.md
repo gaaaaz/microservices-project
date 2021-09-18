@@ -33,7 +33,7 @@ Finalmente, solo ejecuta los microservicios en cualquier orden._
 * Actuator / Admin Server - Monitorizar la salud, env, peticiones de nuestros microservicios
 * Sleuth - Otorgar una id única a cada petición realizada a los microservicios para hacer seguimiento
 
-## Curso seguido 📄
+## Curso 📄
 
 * [Curso Microservicios con Spring Boot y Spring Cloud](https://www.youtube.com/playlist?list=PLxy6jHplP3Hi_W8iuYSbAeeMfaTZt49PW) - Digital Lab Academy
 
