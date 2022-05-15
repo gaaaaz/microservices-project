@@ -1,0 +1,15 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      port: 27017
+      host: localhost
+      database: accounts_database
+api:
+    customer:
+        path: http://localhost:8081/demo/customers
+
+#spring.data.mongodb.username=root
+#spring.data.mongodb.password=root
